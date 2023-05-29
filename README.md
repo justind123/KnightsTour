@@ -18,7 +18,8 @@ and average time for 5 computations (not including printing each solution). Star
 is always in the top left corner of any board size.
 
 | Board Size | Solutions | Time (ms) |
-| 1x1        |           |0          |
+|------------|-----------|-----------|
+| 1x1        |1          |0          |
 | 2x2        |0          |0          |
 | 3x3        |0          |0          |
 | 4x4        |0          |0          |
