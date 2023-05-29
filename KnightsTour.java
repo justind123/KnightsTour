@@ -4,7 +4,7 @@ import java.util.Scanner;
 class KnightsTour {
 
     // 8x8 two dimensional array representing the chess board
-    private static int[][] board = new int[6][6];
+    private static int[][] board = new int[5][5];
 
     // Array of moves available to knight in y direction
     private static int[] dy = {2, 1, -1, -2, -2, -1, 1, 2};
@@ -61,7 +61,7 @@ class KnightsTour {
         board[y][x] = currMove;
 
         if (currMove >= board.length * board.length) {
-            //printBoard();
+            printBoard();
             board[y][x] = 0;
             return solutions + 1;
         }
