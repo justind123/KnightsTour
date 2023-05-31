@@ -8,9 +8,9 @@ the knight visits every square exactly once.
 This repository contains a Java program that finds all the possible knight's tours
 from every possible starting position on the chessboard using a brute force approach.
 
-Once all of the valid solutions starting from a specific space are computed, 2D array representation of 
+Once all of the valid solutions starting from a specific space are computed, a 2D array representation of 
 the chessboard is printed out, with that space containing an integer representing the number of valid
-solutions exist from that starting space.
+solutions that exist from that starting space.
 
 A new thread is created for each space on the board in which it will compute the the number of valid
 solutions before terminating.
