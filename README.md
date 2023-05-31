@@ -12,7 +12,7 @@ Once all of the valid solutions starting from a specific space are computed, a 2
 the chessboard is printed out, with that space containing an integer representing the number of valid
 solutions that exist from that starting space.
 
-For optimization, only the solutions in the top left corner of the board are being computed because
+For optimization, only the solutions in the top left quarter of the board are being computed because
 the number of solutions is horizontally and vertically symmetric, and can be applied to those respective
 spaces without duplicate computations.
 
