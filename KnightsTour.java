@@ -30,11 +30,32 @@ class KnightsTour extends Thread {
 
     public void run() {
         int solutions = solve(x, y, 1, 0);
+
+        // Add solutions to numSolutions[] for mirrored spaces on board
         numSolutions[y][x] = solutions;
-        totalSolutions += solutions;
+        numSolutions[rows - y - 1][x] = solutions;
+        numSolutions[y][cols - x - 1] = solutions;
+        numSolutions[rows - y - 1][cols - x - 1] = solutions;
+
+        // If even, board is always split into quarters evenly
+        if (rows % 2 == 0 && cols % 2 == 0) {
+            totalSolutions += solutions * 4;
+        }
+        // If odd, determine if current space is on middle row/col and
+        // multiply solutions as needed
+        else {
+            if (x == cols / 2 && y == rows / 2) {
+                System.out.println(x + ", " + y);
+                totalSolutions += solutions;
+            }
+            else if (x == cols / 2 || y == rows / 2) {
+                totalSolutions += solutions * 2;
+            }
+            else {
+                totalSolutions += solutions * 4;
+            }
+        }
         printBoard(numSolutions);
-        //System.out.println(String.format("%d, %d done", x, y));
-        //System.out.println(String.format("%d solutions found", solutions));
     }
 
     /*
@@ -93,19 +114,23 @@ class KnightsTour extends Thread {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        KnightsTour[] threads = new KnightsTour[rows*cols];
+        
+        int rowsHalf = (int)Math.ceil(rows / 2.0);
+        int colsHalf = (int)Math.ceil(cols / 2.0);
+        KnightsTour[] threads = new KnightsTour[rowsHalf*colsHalf];
+
         long startTime = System.nanoTime();
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
+        for (int i = 0; i < rowsHalf; i++) {
+            for (int j = 0; j < colsHalf; j++) {
                 KnightsTour thread = new KnightsTour(i, j);
-                threads[rows * i + j] = thread;
+                threads[rowsHalf * i + j] = thread;
                 thread.start();
             }
         }
 
         // Wait for all threads to finish
         for (KnightsTour thread : threads) {
-            thread.join();
+            if (thread != null) thread.join();
         }
         long endTime = System.nanoTime();
         long durationMS = (endTime - startTime) / 1000000;

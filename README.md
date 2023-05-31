@@ -12,20 +12,22 @@ Once all of the valid solutions starting from a specific space are computed, a 2
 the chessboard is printed out, with that space containing an integer representing the number of valid
 solutions that exist from that starting space.
 
-A new thread is created for each space on the board in which it will compute the the number of valid
-solutions before terminating.
+For optimization, only the solutions in the top left corner of the board are being computed because
+the number of solutions is horizontally and vertically symmetric, and can be applied to those respective
+spaces without duplicate computations.
 
 Below is a table documenting the of number of solutions for a given board size
-and calculated timings for computations.
+and calculated timings for computations. Before the quarter board optimization, the program computed the solutions
+on every single space, and I have left the timings as reference.
 
-| Board Size | Solutions | Time (ms) |
-|------------|-----------|-----------|
-| 1x1        |1          |0          |
-| 2x2        |0          |0          |
-| 3x3        |0          |0          |
-| 4x4        |0          |0          |
-| 5x5        |1728       |110        |
-| 6x6        |6637920    |1450994    |
+| Board Size | Solutions | Quarter Brute Force Time (ms) | Full Brute Force Time (ms) |
+|------------|-----------|-------------------------------|----------------------------|
+| 1x1        |1          |0                              |0                           |
+| 2x2        |0          |0                              |0                           |
+| 3x3        |0          |0                              |0                           |
+| 4x4        |0          |0                              |0                           |
+| 5x5        |1728       |68                             |110                         |
+| 6x6        |6637920    |452288                         |1450994                     |
 
 5x5 Solutions per Starting Space  
 [304, 0, 56, 0, 304]  
