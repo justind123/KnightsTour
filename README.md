@@ -6,16 +6,17 @@ the problem of finding a sequence of moves of a knight on a chessboard in which
 the knight visits every square exactly once. 
 
 This repository contains a Java program that finds all the possible knight's tours
-from a single starting position that the user defines using standard chessboard
-position notion (e.g. "e4"). The chessboard is 5x5, as anything larger than that will
-take a considerable amount of time to compute because the program is using a brute force approach.
+from every possible starting position on the chessboard using a brute force approach.
 
-As solutions are found, they are printed out. Each integer is the order in which the knight
-visited that space, starting from 1. At the end, the total number of solutions found is printed.
+Once all of the valid solutions starting from a specific space are computed, 2D array representation of 
+the chessboard is printed out, with that space containing an integer representing the number of valid
+solutions exist from that starting space.
 
-Below is a table documenting my personal findings of number of solutions for a given board size
-and average time for 5 computations (not including printing each solution). Starting position
-is always in the top left corner of any board size.
+A new thread is created for each space on the board in which it will compute the the number of valid
+solutions before terminating.
+
+Below is a table documenting the of number of solutions for a given board size
+and calculated timings for computations.
 
 | Board Size | Solutions | Time (ms) |
 |------------|-----------|-----------|
@@ -23,5 +24,20 @@ is always in the top left corner of any board size.
 | 2x2        |0          |0          |
 | 3x3        |0          |0          |
 | 4x4        |0          |0          |
-| 5x5        |304        |35         |
-| 6x6        |524486     |340,574    |
+| 5x5        |1728       |110        |
+| 6x6        |6637920    |1450994    |
+
+5x5 Solutions per Starting Space
+[304, 0, 56, 0, 304]
+[0, 56, 0, 56, 0]
+[56, 0, 64, 0, 56]
+[0, 56, 0, 56, 0]
+[304, 0, 56, 0, 304]
+
+6x6 Solutions per Starting Space
+[524486, 289050, 115837, 115837, 289050, 524486]
+[289050, 173402, 49578, 49578, 173402, 289050]
+[115837, 49578, 52662, 52662, 49578, 115837]
+[115837, 49578, 52662, 52662, 49578, 115837]
+[289050, 173402, 49578, 49578, 173402, 289050]
+[524486, 289050, 115837, 115837, 289050, 524486]
