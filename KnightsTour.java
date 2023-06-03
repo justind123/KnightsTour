@@ -55,7 +55,7 @@ class KnightsTour extends Thread {
                 totalSolutions += solutions * 4;
             }
         }
-        printBoard(numSolutions);
+        //printBoard(numSolutions);
     }
 
     /*
